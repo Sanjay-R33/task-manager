@@ -1,4 +1,4 @@
-package com.taskManager.TaskManager.enums;
+package com.taskManager.enums;
 
 public enum Status {
     TODO,

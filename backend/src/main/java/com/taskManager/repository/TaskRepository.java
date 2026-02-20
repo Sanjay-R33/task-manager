@@ -1,7 +1,7 @@
-package com.taskManager.TaskManager.repository;
+package com.taskManager.repository;
 
-import com.taskManager.TaskManager.entity.Task;
-import com.taskManager.TaskManager.enums.Status;
+import com.taskManager.entity.Task;
+import com.taskManager.enums.Status;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

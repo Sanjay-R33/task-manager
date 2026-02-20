@@ -1,6 +1,6 @@
-package com.taskManager.TaskManager.entity;
+package com.taskManager.entity;
 
-import com.taskManager.TaskManager.enums.Status;
+import com.taskManager.enums.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;

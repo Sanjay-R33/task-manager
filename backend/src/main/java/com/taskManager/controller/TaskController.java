@@ -1,9 +1,9 @@
-package com.taskManager.TaskManager.controller;
+package com.taskManager.controller;
 
 
-import com.taskManager.TaskManager.entity.Task;
-import com.taskManager.TaskManager.enums.Status;
-import com.taskManager.TaskManager.service.TaskService;
+import com.taskManager.entity.Task;
+import com.taskManager.enums.Status;
+import com.taskManager.service.TaskService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/tasks")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:5173")
 public class TaskController {
 
     private final TaskService service;

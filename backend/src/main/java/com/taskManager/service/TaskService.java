@@ -1,10 +1,10 @@
-package com.taskManager.TaskManager.service;
+package com.taskManager.service;
 
 
-import com.taskManager.TaskManager.entity.Task;
-import com.taskManager.TaskManager.enums.Status;
-import com.taskManager.TaskManager.exception.TaskNotFoundException;
-import com.taskManager.TaskManager.repository.TaskRepository;
+import com.taskManager.entity.Task;
+import com.taskManager.enums.Status;
+import com.taskManager.exception.TaskNotFoundException;
+import com.taskManager.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;

@@ -1,52 +1,65 @@
 package com.taskManager.controller;
 
-
 import com.taskManager.entity.Task;
 import com.taskManager.enums.Status;
 import com.taskManager.service.TaskService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/tasks")
+@RequestMapping("/")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:5173")
 public class TaskController {
 
     private final TaskService service;
 
-    @PostMapping
-    public Task create(@Valid @RequestBody Task task) {
+    // CREATE TASK
+    @PostMapping("/addtask")
+    public Task create(@RequestBody Task task) {
         return service.create(task);
     }
 
-    @PutMapping("/{id}/status")
-    public Task updateStatus(@PathVariable Long id,
-                             @RequestParam Status status) {
-        return service.updateStatus(id, status);
+    // GET TODO TASKS
+    @GetMapping("/todo")
+    public Page<Task> getTodoTasks(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(required = false) String search
+    ) {
+        return service.getByStatus(Status.TODO, page - 1, search);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    // GET IN_PROGRESS TASKS
+    @GetMapping("/progress")
+    public Page<Task> getProgressTasks(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(required = false) String search
+    ) {
+        return service.getByStatus(Status.PROGRESS, page - 1, search);
+    }
+
+    // GET DONE TASKS
+    @GetMapping("/done")
+    public Page<Task> getDoneTasks(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(required = false) String search
+    ) {
+        return service.getByStatus(Status.DONE, page - 1, search);
+    }
+
+    // UPDATE TASK (title / description / status)
+    @PutMapping("/edittask/{id}")
+    public Task updateTask(
+            @PathVariable Long id,
+            @RequestBody Task updated
+    ) {
+        return service.update(id, updated);
+    }
+
+    // DELETE TASK
+    @DeleteMapping("/deletetask/{id}")
+    public void deleteTask(@PathVariable Long id) {
         service.delete(id);
-    }
-
-    @GetMapping
-    public Page<Task> getAll(Pageable pageable) {
-        return service.getAll(pageable);
-    }
-
-    @GetMapping("/filter")
-    public Page<Task> filterByStatus(@RequestParam Status status,
-                                     Pageable pageable) {
-        return service.filterByStatus(status, pageable);
-    }
-
-    @GetMapping("/search")
-    public Page<Task> search(@RequestParam String title,
-                             Pageable pageable) {
-        return service.searchByTitle(title, pageable);
     }
 }

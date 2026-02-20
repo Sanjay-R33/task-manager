@@ -14,7 +14,7 @@ import {
   updateTask,
 } from "../localstorage/taskStorage";
 
-const USE_LOCAL_TEST_DATA = true;
+const USE_LOCAL_TEST_DATA = false;
 
 export default function Dashboard() {
   const [tasks, setTasks] = useState([]);
@@ -58,15 +58,15 @@ export default function Dashboard() {
     const rows = res.data?.content ?? [];
     const visibleRows =
       statusFilter === "active"
-        ? rows.filter((t) => t.status === "todo" || t.status === "progress")
+        ? rows.filter((t) => t.status === "TODO" || t.status === "PROGRESS")
         : rows;
     setTasks(visibleRows);
     setTotalPages(res.data?.totalPages ?? 1);
     setSummary({
       total: rows.length,
-      todo: rows.filter((t) => t.status === "todo").length,
-      progress: rows.filter((t) => t.status === "progress").length,
-      done: rows.filter((t) => t.status === "done").length,
+      todo: rows.filter((t) => t.status === "TODO").length,
+      progress: rows.filter((t) => t.status === "PROGRESS").length,
+      done: rows.filter((t) => t.status === "DONE").length,
     });
   };
 
